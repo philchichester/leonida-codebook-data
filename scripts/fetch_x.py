@@ -4,9 +4,14 @@
 Runs every 30 minutes from .github/workflows/official-posts.yml with the
 repository secret X_BEARER_TOKEN. Uses since_id so each run only pays for
 posts it hasn't seen (X API pay-per-use). Exits quietly when no token is set.
+
+Only GTA VI posts are published in `posts`. When none of the recent posts
+match, the single latest post is published instead (`fallback: true`).
+`--refilter` re-applies the filter to the saved posts without calling X.
 """
 import json
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -15,6 +20,8 @@ from pathlib import Path
 
 ACCOUNTS = ["RockstarGames"]
 KEEP = 20
+RECENT = 60
+GTA_VI = re.compile(r"\bgta\s?(vi|6)\b|#gtavi|#gta6|\bgrand theft auto vi\b|\bleonida\b|\bvice city\b|\bjason\b|\blucia\b", re.I)
 OUT = Path(__file__).resolve().parent.parent / "official.json"
 TOKEN = os.environ.get("X_BEARER_TOKEN", "").strip()
 
@@ -26,13 +33,35 @@ def get(path, **params):
         return json.load(r)
 
 
+def publish(state, recent):
+    """Write official.json if the published set changed. Returns True if written."""
+    recent = sorted(recent.values(), key=lambda p: p.get("created_at") or "", reverse=True)[:RECENT]
+    for p in recent:
+        p["vi"] = bool(GTA_VI.search(p.get("text", "")))
+    vi = [p for p in recent if p["vi"]][:KEEP]
+    fallback = not vi
+    posts = vi or recent[:1]
+    if state.get("posts") == posts and state.get("fallback") == fallback and state.get("recent") == recent:
+        return False
+    state.update({"updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                  "fallback": fallback, "posts": posts, "recent": recent})
+    OUT.write_text(json.dumps(state, ensure_ascii=False, indent=1))
+    print(f"Published {len(posts)} post(s){' (fallback: latest post)' if fallback else ' about GTA VI'}.")
+    return True
+
+
 def main():
+    state = json.loads(OUT.read_text()) if OUT.exists() else {}
+    # Older files only had `posts`; seed the recent pool from them.
+    recent = {p["id"]: p for p in state.get("recent", state.get("posts", []))}
+    if "--refilter" in sys.argv:
+        publish(state, recent)
+        return
     if not TOKEN:
         print("X_BEARER_TOKEN not set; skipping.")
         return
-    state = json.loads(OUT.read_text()) if OUT.exists() else {}
     accounts = state.get("accounts", {})
-    posts = {p["id"]: p for p in state.get("posts", [])}
+    posts = recent
     added = 0
     for handle in ACCOUNTS:
         acct = accounts.get(handle)
@@ -50,13 +79,10 @@ def main():
         if res.get("meta", {}).get("newest_id"):
             acct["since_id"] = res["meta"]["newest_id"]
         accounts[handle] = acct
-    if added == 0 and OUT.exists() and state.get("accounts"):
-        print("No new posts.")
-        return
-    latest = sorted(posts.values(), key=lambda p: p.get("created_at") or "", reverse=True)[:KEEP]
-    OUT.write_text(json.dumps({"updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                               "accounts": accounts, "posts": latest}, ensure_ascii=False, indent=1))
-    print(f"Added {added} post(s).")
+    state["accounts"] = accounts
+    print(f"Fetched {added} new post(s).")
+    if not publish(state, posts):
+        print("Nothing to publish.")
 
 
 if __name__ == "__main__":

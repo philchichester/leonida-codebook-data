@@ -1,9 +1,9 @@
 # Leonida Codebook: data feed
 
-This is the weekly data edition behind the **Leonida Codebook** iOS app, an unofficial fan guide. The app downloads `codebook.json` on launch and on pull-to-refresh, and falls back to the copy bundled in the app.
+This is the live data feed behind the **Leonida Codebook** iOS app, an unofficial fan guide. The app downloads `codebook.json` on launch and on pull-to-refresh, and falls back to the copy bundled in the app.
 
 - `codebook.json` holds the current edition: release status, intel, regions and map spots, characters, vehicles, the rumor tracker, FAQ, timeline, checklists and vault codes.
-- A new edition is published weekly. Entries keep stable ids, and `since` and `rev` mark the edition each entry first appeared in and the edition it last changed in.
+- It's updated whenever new information lands. Entries keep stable ids, and `since` and `rev` mark the edition each entry first appeared in and the edition it last changed in.
 
 Summaries are original writing with links to the reporting they're based on.
 

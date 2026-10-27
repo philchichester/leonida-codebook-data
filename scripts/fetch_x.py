@@ -9,6 +9,7 @@ Only GTA VI posts are published in `posts`. When none of the recent posts
 match, the single latest post is published instead (`fallback: true`).
 `--refilter` re-applies the filter to the saved posts without calling X.
 """
+import html
 import json
 import os
 import re
@@ -37,7 +38,10 @@ def publish(state, recent):
     """Write official.json if the published set changed. Returns True if written."""
     recent = sorted(recent.values(), key=lambda p: p.get("created_at") or "", reverse=True)[:RECENT]
     for p in recent:
-        p["vi"] = bool(GTA_VI.search(p.get("text", "")))
+        # X returns HTML-escaped text (&amp;) and millisecond timestamps; clean both for the app.
+        p["text"] = html.unescape(p.get("text", ""))
+        p["created_at"] = re.sub(r"\.\d+Z$", "Z", p.get("created_at") or "")
+        p["vi"] = bool(GTA_VI.search(p["text"]))
     vi = [p for p in recent if p["vi"]][:KEEP]
     fallback = not vi
     posts = vi or recent[:1]

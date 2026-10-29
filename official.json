@@ -1,13 +1,22 @@
 {
- "updated_at": "2026-10-27T15:48:17+00:00",
+ "updated_at": "2026-10-29T16:47:54+00:00",
  "accounts": {
   "RockstarGames": {
    "id": "29758446",
    "name": "Rockstar Games",
-   "since_id": "2115081080822763858"
+   "since_id": "2115790782711930978"
   }
  },
  "posts": [
+  {
+   "id": "2115790782711930978",
+   "handle": "RockstarGames",
+   "name": "Rockstar Games",
+   "text": "Grand Theft Auto VI: Original Score by Justice\n\nLearn more about this adaptive score, hear the new single “Pusher” feat. Gesaffelstein, and more: https://t.co/PUYBp3eSHp https://t.co/XcoRxeTGQR",
+   "created_at": "2026-10-29T13:00:06Z",
+   "url": "https://x.com/RockstarGames/status/2115790782711930978",
+   "vi": true
+  },
   {
    "id": "2110752095024332886",
    "handle": "RockstarGames",
@@ -29,6 +38,24 @@
  ],
  "fallback": false,
  "recent": [
+  {
+   "id": "2115790782711930978",
+   "handle": "RockstarGames",
+   "name": "Rockstar Games",
+   "text": "Grand Theft Auto VI: Original Score by Justice\n\nLearn more about this adaptive score, hear the new single “Pusher” feat. Gesaffelstein, and more: https://t.co/PUYBp3eSHp https://t.co/XcoRxeTGQR",
+   "created_at": "2026-10-29T13:00:06Z",
+   "url": "https://x.com/RockstarGames/status/2115790782711930978",
+   "vi": true
+  },
+  {
+   "id": "2115775659041603744",
+   "handle": "RockstarGames",
+   "name": "Rockstar Games",
+   "text": "Get Halloween treats for the latest GTA Online Weekly Challenge. Complete 10 waves in a Survival without dying to get the Slasher Clown Outfit and GTA$250,000.\n\nPlus, get the Brown Vintage Skull Mask, discounts on otherworldly vehicles, and more: https://t.co/URNAjsz3qp https://t.co/5e1lxE0qLp",
+   "created_at": "2026-10-29T12:00:00Z",
+   "url": "https://x.com/RockstarGames/status/2115775659041603744",
+   "vi": false
+  },
   {
    "id": "2115081080822763858",
    "handle": "RockstarGames",

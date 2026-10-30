@@ -1,10 +1,10 @@
 {
- "updated_at": "2026-10-29T16:47:54+00:00",
+ "updated_at": "2026-10-30T15:14:39+00:00",
  "accounts": {
   "RockstarGames": {
    "id": "29758446",
    "name": "Rockstar Games",
-   "since_id": "2115790782711930978"
+   "since_id": "2116181432808681971"
   }
  },
  "posts": [
@@ -38,6 +38,24 @@
  ],
  "fallback": false,
  "recent": [
+  {
+   "id": "2116181432808681971",
+   "handle": "RockstarGames",
+   "name": "Rockstar Games",
+   "text": "And keep an eye out for @nopixel V's Halloween event on October 31 at 7 p.m. ET.",
+   "created_at": "2026-10-30T14:52:24Z",
+   "url": "https://x.com/RockstarGames/status/2116181432808681971",
+   "vi": false
+  },
+  {
+   "id": "2116181283566911804",
+   "handle": "RockstarGames",
+   "name": "Rockstar Games",
+   "text": "Get the Grotti Turismo Omaggio and Rockstar Motorsport livery in GTA Online by watching select Twitch streamers in nopixel V between Oct 30 and Nov 1.\n\nDetails: https://t.co/NRWu4vz4EN https://t.co/nwcdTIUrkK",
+   "created_at": "2026-10-30T14:51:49Z",
+   "url": "https://x.com/RockstarGames/status/2116181283566911804",
+   "vi": false
+  },
   {
    "id": "2115790782711930978",
    "handle": "RockstarGames",

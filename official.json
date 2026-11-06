@@ -1,10 +1,10 @@
 {
- "updated_at": "2026-11-05T21:51:33+00:00",
+ "updated_at": "2026-11-06T17:16:31+00:00",
  "accounts": {
   "RockstarGames": {
    "id": "29758446",
    "name": "Rockstar Games",
-   "since_id": "2118357919229964343"
+   "since_id": "2118716282304397442"
   }
  },
  "posts": [
@@ -65,6 +65,15 @@
  ],
  "fallback": false,
  "recent": [
+  {
+   "id": "2118716282304397442",
+   "handle": "RockstarGames",
+   "name": "Rockstar Games",
+   "text": "Get ahead of the impending holiday rush with a Grotti Itali RSX sports car, free to claim for GTA+ Members from The Vinewood Car Club showroom.\n\nAlso, get shiny new Chameleon Paints, a mind-blowing decoration for your Mansion, and more: https://t.co/FygS4LMX4y https://t.co/1jsRs8lt0N",
+   "created_at": "2026-11-06T14:45:00Z",
+   "url": "https://x.com/RockstarGames/status/2118716282304397442",
+   "vi": false
+  },
   {
    "id": "2118357919229964343",
    "handle": "RockstarGames",
